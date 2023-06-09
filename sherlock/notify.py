@@ -216,7 +216,7 @@ class QueryNotifyPrint(QueryNotify):
         response_time_text = ""
         if self.result.query_time is not None and self.verbose == True:
             response_time_text = f" [{round(self.result.query_time * 1000)}ms]"
-        
+
         # Output to the terminal is desired.
         if result.status == QueryStatus.CLAIMED:
             self.countResults()
@@ -240,12 +240,23 @@ class QueryNotifyPrint(QueryNotify):
 
         elif result.status == QueryStatus.UNKNOWN:
             if self.print_all:
-                print(Style.BRIGHT + Fore.WHITE + "[" +
-                      Fore.RED + "-" +
-                      Fore.WHITE + "]" +
-                      Fore.GREEN + f" {self.result.site_name}:" +
-                      Fore.RED + f" {self.result.context}" +
-                      Fore.YELLOW + f" ")
+                print(
+                    (
+                        Style.BRIGHT
+                        + Fore.WHITE
+                        + "["
+                        + Fore.RED
+                        + "-"
+                        + Fore.WHITE
+                        + "]"
+                        + Fore.GREEN
+                        + f" {self.result.site_name}:"
+                        + Fore.RED
+                        + f" {self.result.context}"
+                        + Fore.YELLOW
+                        + " "
+                    )
+                )
 
         elif result.status == QueryStatus.ILLEGAL:
             if self.print_all:
